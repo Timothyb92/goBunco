@@ -1,0 +1,19 @@
+.profileImg {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin-top: 5em;
+}
+
+.welcomeMessage {
+  margin-top: 2em;
+  font-size: 30px;
+}
+
+.buttonContainer {
+  position: absolute;
+  width: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10vh;
+}

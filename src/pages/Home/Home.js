@@ -20,7 +20,7 @@ class Home extends Component {
             </div>
           </Col>
         </Row>
-        <div className="homeButtons">
+        <div className="buttonContainer">
           <Row>
             <Col size="sm-12">
                 <div className="text-center">

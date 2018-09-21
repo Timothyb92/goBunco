@@ -5,6 +5,10 @@ footer {
   transform: translateX(-50%);
 }
 
+.col-sm-12 {
+  padding: 0;
+}
+
 .btn {
   margin-top: 1em;
   width: 100%;
@@ -12,7 +16,7 @@ footer {
   font-size: 2em;
 }
 
-.homeButtons {
+.buttonContainer {
   position: absolute;
   width: 105%;
   left: 50%;
@@ -23,6 +27,7 @@ footer {
 body {
   background-color: #BCEFEE;
   font-family: 'Pacifico', cursive;
+  padding: 0;
 }
 
 h1 {
