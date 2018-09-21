@@ -7,17 +7,25 @@ footer {
 
 .btn {
   margin-top: 1em;
-  width: 25%;
+  width: 100%;
+  background-color: #A28639;
+  font-size: 2em;
 }
 
 .homeButtons {
   position: absolute;
-  width: 100%;
+  width: 105%;
   left: 50%;
   transform: translateX(-50%);
   bottom: 20vh;
 }
 
 body {
-  background-color: rgb(77, 85, 201)
+  background-color: #BCEFEE;
+  font-family: 'Pacifico', cursive;
+}
+
+h1 {
+  font-size: 4.5rem;
+  color: #A28639
 }

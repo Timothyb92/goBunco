@@ -24,7 +24,7 @@ class Home extends Component {
           <Row>
             <Col size="sm-12">
                 <div className="text-center">
-                  <button className="btn btn-primary">
+                  <button className="btn">
                     Log In
                   </button>
                 </div>
@@ -33,7 +33,7 @@ class Home extends Component {
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                  <button className="btn btn-primary">
+                  <button className="btn">
                     Sign Up
                   </button>
               </div>
