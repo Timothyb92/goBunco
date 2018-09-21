@@ -24,18 +24,22 @@ class Home extends Component {
           <Row>
             <Col size="sm-12">
                 <div className="text-center">
-                  <button className="btn">
-                    Log In
-                  </button>
+                  <a href="/profile">
+                    <button className="btn">
+                      Log In
+                    </button>
+                  </a>
                 </div>
             </Col>
           </Row>
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                  <button className="btn">
-                    Sign Up
-                  </button>
+                  <a href="/profile">
+                    <button className="btn">
+                      Sign Up
+                    </button>
+                  </a>
               </div>
             </Col>
           </Row>
