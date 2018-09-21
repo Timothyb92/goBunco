@@ -1,0 +1,23 @@
+footer {
+  position: absolute;
+  bottom: 0vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn {
+  margin-top: 1em;
+  width: 25%;
+}
+
+.homeButtons {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20vh;
+}
+
+body {
+  background-color: rgb(77, 85, 201)
+}
