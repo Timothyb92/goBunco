@@ -1,0 +1,22 @@
+.winnerAnnouncement {
+  font-size: 80px;
+  margin: 0;
+}
+
+.winners {
+  font-size: 35px;
+}
+
+.playerResults {
+  border-top: 1px solid black
+}
+
+.playersStaying, .playersMoving {
+  margin-top: 2em;
+  border-bottom: 1px solid;
+  padding-bottom: 4px;
+}
+
+.roundNumber {
+  margin-top: 1em;
+}
