@@ -5,6 +5,7 @@ import './App.css';
 import Home from './pages/Home';
 import Welcome from './pages/Welcome';
 import Lobby from './pages/Lobby';
+import StartRound from './pages/StartRound';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/profile" component={Welcome} />
           <Route exact path="/lobby" component={Lobby} />
+          <Route exact path="/start" component={StartRound} />
         </Switch>
       </Router>
     );
