@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Welcome from './pages/Welcome';
 import Lobby from './pages/Lobby';
 import StartRound from './pages/StartRound';
+import InGame from './pages/InGame';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/profile" component={Welcome} />
           <Route exact path="/lobby" component={Lobby} />
           <Route exact path="/start" component={StartRound} />
+          <Route exact path="/play" component={InGame} />
         </Switch>
       </Router>
     );

@@ -1,0 +1,23 @@
+.inGameHeader {
+  font-size: 75px;
+}
+
+#inGameParent div{
+  padding: 0;
+}
+
+.plusOne, .plusFive {
+  width: 120px;
+}
+
+.gameButtons {
+  margin-top: 4em;
+}
+
+.score {
+  font-size: 40px;
+}
+
+.usHeader {
+  margin-left: 20px;
+}
