@@ -26,7 +26,7 @@ class Welcome extends Component {
           <Row>
             <Col size="sm-12">
                 <div className="text-center">
-                  <a href="#">
+                  <a href="/lobby">
                     <button className="btn">
                       Host Game
                     </button>
@@ -37,7 +37,7 @@ class Welcome extends Component {
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                  <a href="#">
+                  <a href="/lobby">
                     <button className="btn">
                       Join Game
                     </button>
