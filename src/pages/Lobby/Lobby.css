@@ -2,10 +2,6 @@ ul {
   list-style: none;
 }
 
-.lobbyButtonContainer {
-  position: absolute;
-  width: 105%;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -45vh;
+.lobbyButtonContainerFluid .col-sm-12 {
+  padding: 0;
 }
