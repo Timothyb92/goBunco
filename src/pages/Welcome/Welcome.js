@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from "../../components/Grid";
 import './Welcome.css'
 import Footer from '../../components/Footer';
+// import UserImg from '../../components/UserImg';
 
 class Welcome extends Component {
+  state = {
+    img: 'https://education.fsu.edu/wp-content/uploads/2018/07/placeholder.png',
+    userName: 'Tim'
+  }
 
   render() {
     return (
@@ -12,7 +17,7 @@ class Welcome extends Component {
         <Row>
           <Col size="sm-12">
             <div className="text-center">
-              <img src="https://education.fsu.edu/wp-content/uploads/2018/07/placeholder.png" className="profileImg img-fluid" />
+              <img src={this.state.img} alt="User image" className="profileImg" />
             </div>
           </Col>
         </Row>
@@ -20,7 +25,7 @@ class Welcome extends Component {
           <Col size="sm-12">
             <div className="text-center welcomeMessage">
               <p>Welcome</p>
-              <p>User</p>
+              <p>{this.state.userName}</p>
             </div>
           </Col>
         </Row>
