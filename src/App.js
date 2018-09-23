@@ -8,6 +8,7 @@ import Lobby from './pages/Lobby';
 import StartRound from './pages/StartRound';
 import InGame from './pages/InGame';
 import RoundEnd from './pages/RoundEnd';
+import FinalScore from './pages/FinalScore';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/start" component={StartRound} />
           <Route exact path="/play" component={InGame} />
           <Route exact path="/round-end" component={RoundEnd} />
+          <Route exact path="/final" component={FinalScore} />
         </Switch>
       </Router>
     );

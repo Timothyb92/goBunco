@@ -24,7 +24,7 @@ class StartRound extends Component {
         <div className="mt-5">
           <Row>
             <Col size="sm-12">
-              <a href="#">
+              <a href="/play">
                 <button className="btn">Start!</button>
               </a>
             </Col>
