@@ -16,7 +16,7 @@ class Welcome extends Component {
         <Row>
           <Col size="sm-12">
             <div className="text-center">
-              <img src={this.state.img} alt="User image" className="profileImg" />
+              <img src={this.state.img} alt="User" className="profileImg" />
             </div>
           </Col>
         </Row>

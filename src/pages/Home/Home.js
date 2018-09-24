@@ -45,7 +45,7 @@ class Home extends Component {
             <Col size="sm-12">
               <div className="text-center">
                 <h1>Go Bunco</h1>
-                {(!this.state.logInClicked && !this.state.signUpClicked) && <img src={dice} />}
+                {(!this.state.logInClicked && !this.state.signUpClicked) && <img src={dice} alt="dice" />}
                 {this.state.logInClicked && (<LogIn />)}
                 {this.state.signUpClicked && (<SignUp />)}
               </div>
@@ -56,22 +56,18 @@ class Home extends Component {
           <Row>
             <Col size="sm-12">
                 <div className="text-center">
-                  <a href="#">
-                    <button className="btn" onClick={this.toggleLogIn}>
-                      Log In
-                    </button>
-                  </a>
+                  <button className="btn" onClick={this.toggleLogIn}>
+                    Log In
+                  </button>
                 </div>
             </Col>
           </Row>
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                  <a href="#">
-                    <button className="btn" onClick={this.toggleSignUp}>
-                      Sign Up
-                    </button>
-                  </a>
+                  <button className="btn" onClick={this.toggleSignUp}>
+                    Sign Up
+                  </button>
               </div>
             </Col>
           </Row>

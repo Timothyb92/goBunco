@@ -19,6 +19,13 @@ mongoose.connect(
   "mongodb://localhost/bunco"
 );
 
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Connected')
+});
+
+
 app.listen(PORT, () =>
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 );
