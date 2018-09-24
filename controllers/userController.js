@@ -25,15 +25,17 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   verifyUser: (req, res) => {
-    console.log(req.body);
-    console.log(req.body.userName)
-    console.log(req.body.password)
-    // console.log(req.params.userName);
     db.User
       .findOne({
         userName: req.body.userName
       })
-      .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
+      .then(dbUser => {
+        // console.log(dbUser.password);
+        if(dbUser.password === req.body.password) {
+          console.log('Password match');
+        } else {
+          console.log('Password wrong')
+        }
+      })
   }
 }
