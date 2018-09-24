@@ -9,13 +9,12 @@ module.exports = {
   },
   findById: (req, res) => {
     db.User
-      .findById(req.params.id)
+      .findById(req.params.userName)
       .then(dbUser => res.json(dbUser))
       .catch(err => res.status(422).json(err));
   },
   create: (req, res) => {
     const user = {
-      // _id: req.body._id,
       userName: req.body.userName,
       password: req.body.password
     };
@@ -30,9 +29,11 @@ module.exports = {
         userName: req.body.userName
       })
       .then(dbUser => {
-        // console.log(dbUser.password);
         if(dbUser.password === req.body.password) {
+          console.log(req.body);
           console.log('Password match');
+          return res.json(dbUser._id);
+          // return res.redirect('/profile');
         } else {
           console.log('Password wrong')
         }

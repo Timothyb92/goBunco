@@ -1,41 +1,59 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 
 class LogIn extends Component {
 
   state = {
     userName: '',
-    password: ''
+    password: '',
+    id: ''
   };
+
+  redirectOnSuccess = route => {
+    const endPoint = `/profile/${route}`;
+    console.log(endPoint);
+    return <Redirect to={endPoint} />
+  }
 
   verifyUser = data => {
     API.verifyUser(data)
+      // .then(results => {
+      //   API.getUser(results)
+      //     .then(userRes => {
+      //       console.log(userRes);
+      //     })
+      // })
     .then(results => {
-      console.log(results);
+      this.setState({
+        id: results.data
+      })
+      console.log(this.state.id);
+      this.redirectOnSuccess(this.state.id);
     })
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    // console.log(this.state.userName);
-    // console.log(this.state.password);
     const user = {
       userName: this.state.userName,
       password: this.state.password
     }
-    console.log(user);
     this.verifyUser(user);
   };
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    // console.log(`${name}: ${value}`);
     this.setState({
       [name]: value
     });
   }
   
   render() {
+    if (this.state.id !== '') {
+      return <Redirect to="/profile" />
+    }
+
     return (
       <div className="mt-5">
         <h2 className="mb-4">Log In</h2>

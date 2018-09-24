@@ -16,7 +16,8 @@ app.use(routes);
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/bunco"
+  "mongodb://localhost/bunco",
+  { useNewUrlParser:true }
 );
 
 const db = mongoose.connection;
