@@ -20,7 +20,11 @@ class SignUp extends Component {
     event.preventDefault();
     console.log(this.state.userName);
     console.log(this.state.password);
-    this.createUser();
+    const newUser = {
+      userName: this.state.userName,
+      password: this.state.password
+    }
+    this.createUser(newUser);
   };
 
   handleInputChange = event => {
