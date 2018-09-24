@@ -6,7 +6,6 @@ router.route('/')
   .post(userController.create);
 
 router.route('/:userName')
-  // console.log(`users.js line 9`)
   .get(userController.findById)
   .post(userController.verifyUser);
 

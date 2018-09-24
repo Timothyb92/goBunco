@@ -9,6 +9,7 @@ module.exports = {
   },
   findById: (req, res) => {
     console.log(req.params.userName)
+    console.log('findbyid')
     db.User
       .findById(req.params.userName)
       .then(dbUser => res.json(dbUser))

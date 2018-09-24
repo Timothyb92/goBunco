@@ -9,9 +9,9 @@ export default {
     // console.log(data);
     return axios.post(`api/users/${data.userName}`, data)
   },
-  getUserInfo: data => {
-    // console.log(`getUserInfo executing line13 api.js`);
-    console.log(data);
-    return axios.get(`api/users/${data}`)
+  getUserInfo: userId => {
+    console.log(`getUserInfo executing line13 api.js`);
+    console.log(userId);
+    return axios.get(`api/users/${userId}`)
   }
 }
