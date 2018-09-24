@@ -37,7 +37,7 @@ class SignUp extends Component {
 
   render() {
     if (this.state.id !=='') {
-      return <Redirect to={`/profile/${this.state.id}`} />
+      return <Redirect to={`/users/${this.state.id}`} />
     }
 
     return (

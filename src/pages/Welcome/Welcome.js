@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from "../../components/Grid";
 import './Welcome.css'
 import Footer from '../../components/Footer';
-// import API from '../../utils/API';
+import API from '../../utils/API';
 
 class Welcome extends Component {
   state = {
@@ -10,13 +10,15 @@ class Welcome extends Component {
     userName: 'Tim'
   }
 
-  // componentDidMount() {
-    
-  // }
+  componentDidMount() {
+    const thisId = document.location.pathname.slice(7);
+    // console.log(thisId);
+    API.getUserInfo(thisId)
+      .then(results => {
+        console.log(results);
+      })
+  }
 
-  // getUserInfo = data => {
-  //   API.verifyUser(data)
-  // }
 
   render() {
     return (

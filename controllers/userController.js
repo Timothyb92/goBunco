@@ -8,6 +8,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findById: (req, res) => {
+    console.log(req.params.userName)
     db.User
       .findById(req.params.userName)
       .then(dbUser => res.json(dbUser))
@@ -33,7 +34,6 @@ module.exports = {
           console.log(req.body);
           console.log('Password match');
           return res.json(dbUser._id);
-          // return res.redirect('/profile');
         } else {
           console.log('Password wrong')
         }

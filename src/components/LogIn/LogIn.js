@@ -39,7 +39,7 @@ class LogIn extends Component {
   
   render() {
     if (this.state.id !== '') {
-      return <Redirect to={`/path/${this.state.id}`} />
+      return <Redirect to={`/users/${this.state.id}`} />
     }
 
     return (
