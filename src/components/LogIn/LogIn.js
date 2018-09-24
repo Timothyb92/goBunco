@@ -10,26 +10,14 @@ class LogIn extends Component {
     id: ''
   };
 
-  redirectOnSuccess = route => {
-    const endPoint = `/profile/${route}`;
-    console.log(endPoint);
-    return <Redirect to={endPoint} />
-  }
 
   verifyUser = data => {
     API.verifyUser(data)
-      // .then(results => {
-      //   API.getUser(results)
-      //     .then(userRes => {
-      //       console.log(userRes);
-      //     })
-      // })
     .then(results => {
       this.setState({
         id: results.data
       })
-      console.log(this.state.id);
-      this.redirectOnSuccess(this.state.id);
+      // console.log(this.state.id);
     })
   }
 
@@ -51,7 +39,7 @@ class LogIn extends Component {
   
   render() {
     if (this.state.id !== '') {
-      return <Redirect to="/profile" />
+      return <Redirect to={`/path/${this.state.id}`} />
     }
 
     return (

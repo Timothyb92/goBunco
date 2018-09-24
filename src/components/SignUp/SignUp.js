@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 
 class SignUp extends Component {
 
   state = {
     userName: '',
-    password: ''
+    password: '',
+    id: ''
   };
 
   createUser = data => {
     API.createUser(data)
     .then(results => {
-      console.log('Created user');
+      this.setState({
+        id: results.data._id
+      })
     })
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.userName);
-    console.log(this.state.password);
     const newUser = {
       userName: this.state.userName,
       password: this.state.password
@@ -28,13 +30,16 @@ class SignUp extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    // console.log(`${name}: ${value}`);
     this.setState({
       [name]: value
     });
   }
 
   render() {
+    if (this.state.id !=='') {
+      return <Redirect to={`/profile/${this.state.id}`} />
+    }
+
     return (
       <div className="mt-5">
         <h2 className="mb-4">Sign Up</h2>
