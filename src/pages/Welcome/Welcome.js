@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from "../../components/Grid";
 import './Welcome.css'
 import Footer from '../../components/Footer';
-// import UserImg from '../../components/UserImg';
 
 class Welcome extends Component {
   state = {

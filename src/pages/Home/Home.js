@@ -3,12 +3,22 @@ import { Col, Row, Container } from '../../components/Grid';
 import './Home.css';
 import dice from './images/dice.png';
 import Footer from '../../components/Footer';
+import LogIn from '../../components/LogIn';
+import Portal from '../../components/Portal';
 
 class Home extends Component {
   state = {
     userName: '',
-    password: ''
+    password: '',
+    logInClicked: false,
+    signUpClicked: false
   };
+
+  toggleLogIn = () => {
+    this.setState({
+      logInClicked: !this.state.logInClicked
+    })
+  }
 
   render() {
     return (
@@ -18,7 +28,8 @@ class Home extends Component {
             <Col size="sm-12">
               <div className="text-center">
                 <h1>Go Bunco</h1>
-                <img src={dice} />
+                {(!this.state.logInClicked && !this.state.signUpClicked) && <img src={dice} />}
+                {this.state.logInClicked && (<LogIn />)}
               </div>
             </Col>
           </Row>
@@ -27,8 +38,8 @@ class Home extends Component {
           <Row>
             <Col size="sm-12">
                 <div className="text-center">
-                  <a href="/profile">
-                    <button className="btn">
+                  <a href="#">
+                    <button className="btn" onClick={this.toggleLogIn}>
                       Log In
                     </button>
                   </a>
@@ -38,7 +49,7 @@ class Home extends Component {
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                  <a href="/profile">
+                  <a href="#">
                     <button className="btn">
                       Sign Up
                     </button>
