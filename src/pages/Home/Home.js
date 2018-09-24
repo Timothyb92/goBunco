@@ -4,7 +4,8 @@ import './Home.css';
 import dice from './images/dice.png';
 import Footer from '../../components/Footer';
 import LogIn from '../../components/LogIn';
-import Portal from '../../components/Portal';
+// import Portal from '../../components/Portal';
+import SignUp from '../../components/SignUp';
 
 class Home extends Component {
   state = {
@@ -17,8 +18,24 @@ class Home extends Component {
   toggleLogIn = () => {
     this.setState({
       logInClicked: !this.state.logInClicked
-    })
-  }
+    });
+    if (this.state.signUpClicked) {
+      this.setState({
+        signUpClicked: false
+      });
+    };
+  };
+
+  toggleSignUp = () => {
+    this.setState({
+      signUpClicked: !this.state.signUpClicked
+    });
+    if (this.state.logInClicked) {
+      this.setState({
+        logInClicked: false
+      });
+    };
+  };
 
   render() {
     return (
@@ -30,6 +47,7 @@ class Home extends Component {
                 <h1>Go Bunco</h1>
                 {(!this.state.logInClicked && !this.state.signUpClicked) && <img src={dice} />}
                 {this.state.logInClicked && (<LogIn />)}
+                {this.state.signUpClicked && (<SignUp />)}
               </div>
             </Col>
           </Row>
@@ -50,7 +68,7 @@ class Home extends Component {
             <Col size="sm-12">
               <div className="text-center">
                   <a href="#">
-                    <button className="btn">
+                    <button className="btn" onClick={this.toggleSignUp}>
                       Sign Up
                     </button>
                   </a>
