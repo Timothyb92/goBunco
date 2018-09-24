@@ -1,8 +1,8 @@
 const router = require('express').Router();
-import userRoutes from './users';
-import lobbyRoutes from './lobbies';
+const userRoutes = require('./users');
+// const lobbyRoutes = require('./lobbies');
 
 router.use('/users', userRoutes);
-router.use('lobbies', lobbyRoutes);
+// router.use('/lobbies', lobbyRoutes);
 
 module.exports = router;

@@ -1,9 +1,9 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import routes from 'routes';
+const express = require('express');
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+const routes = require('./routes');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
