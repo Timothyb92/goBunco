@@ -9,8 +9,8 @@ import SignUp from '../../components/SignUp';
 
 class Home extends Component {
   state = {
-    userName: '',
-    password: '',
+    // userName: '',
+    // password: '',
     logInClicked: false,
     signUpClicked: false
   };
