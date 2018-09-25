@@ -7,7 +7,9 @@ import API from '../../utils/API';
 class Welcome extends Component {
   state = {
     img: 'https://education.fsu.edu/wp-content/uploads/2018/07/placeholder.png',
-    userName: ''
+    userName: '',
+    hostClicked: false,
+    joinClicked: false
   }
   
   componentDidMount() {

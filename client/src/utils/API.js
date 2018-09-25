@@ -12,5 +12,9 @@ export default {
     console.log(`getUserInfo executing line13 api.js`);
     console.log(userId);
     return axios.get(`/api/users/${userId}`)
+  },
+  createLobby: data => {
+    console.log(`createLobby running in API.js`);
+    return axios.post(`/api/lobbies`)
   }
 }
