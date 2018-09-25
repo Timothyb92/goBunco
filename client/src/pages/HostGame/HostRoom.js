@@ -3,13 +3,16 @@ import API from '../../utils/API';
 import { Col, Row, Container } from '../../components/Grid';
 import './HostRoom.css';
 import Welcome from '../Welcome';
+import { Redirect } from 'react-router-dom';
 
 class HostRoom extends Component {
   state = {
     roomName: '',
     returnClicked: false,
+    // submitClicked: false,
     userId: this.props.userId,
-    userName: this.props.userName
+    userName: this.props.userName,
+    lobbyId: ''
   };
 
   componentDidMount() {
@@ -23,9 +26,14 @@ class HostRoom extends Component {
   }
 
   createLobby = data => {
-    console.log(data)
     API.createLobby(data)
-    .then(results => console.log(results));
+    .then(results => {
+      console.log(`lobbyId before setState: ${this.state.lobbyId}`);
+      this.setState({
+        lobbyId: results.data._id
+      })
+      console.log(`lobbyId after setState: ${this.state.lobbyId}`)
+    });
   };
 
   handleSubmit = event => {
@@ -34,8 +42,10 @@ class HostRoom extends Component {
       lobbyName: this.state.roomName,
       lobbyOwner: this.state.userName
     };
-    // console.log(lobbyData);
     this.createLobby(lobbyData);
+    // this.setState({
+    //   submitClicked: true
+    // })
   };
 
   handleInputChange = event => {
@@ -48,6 +58,16 @@ class HostRoom extends Component {
   render() {
     if (this.state.returnClicked) {
       return <Welcome />
+    }
+    else if (this.state.lobbyId !== '') {
+      return <Redirect to={{
+        pathname: `/lobby/${this.state.lobbyId}`,
+        state: {
+          owner: this.state.userId,
+          lobbyName: this.state.roomName,
+          lobbyId: this.state.lobbyId
+        }
+      }} />
     }
 
     return (
