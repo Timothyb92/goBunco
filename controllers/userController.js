@@ -27,7 +27,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   verifyUser: (req, res) => {
-    // console.log(req.body);
+    console.log('verifyUser running in userController')
+    console.log(req.body);
     db.User
       .findOne({
         userName: req.body.userName

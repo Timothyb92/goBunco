@@ -7,12 +7,12 @@ import API from '../../utils/API';
 class Welcome extends Component {
   state = {
     img: 'https://education.fsu.edu/wp-content/uploads/2018/07/placeholder.png',
-    userName: 'Tim'
+    userName: ''
   }
   
   componentDidMount() {
     const thisId = document.location.pathname.slice(7);
-    // console.log(thisId);
+    console.log(thisId);
     API.getUserInfo(thisId)
     .then(getRes => {
       console.log(getRes);
@@ -23,16 +23,6 @@ class Welcome extends Component {
     })
   }
   
-  // getUserInfo = event => {
-  //   event.preventDefault();
-  //   const thisId = document.location.pathname.slice(7);
-  //   API.getUserInfo(thisId)
-  //     .then(getRes => {
-  //       console.log(getRes);
-  //     })
-  // }
-
-
   render() {
     return (
     <div>

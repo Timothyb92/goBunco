@@ -12,12 +12,13 @@ class LogIn extends Component {
 
 
   verifyUser = data => {
+    // console.log(data);
     API.verifyUser(data)
     .then(results => {
       this.setState({
         id: results.data
       })
-      // console.log(this.state.id);
+      console.log(this.state.id);
     })
   }
 
