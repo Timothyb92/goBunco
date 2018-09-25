@@ -3,7 +3,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import './Welcome.css'
 import Footer from '../../components/Footer';
 import API from '../../utils/API';
-import HostRoom from '../HostGame';
+import HostRoom from '../HostRoom';
 
 class Welcome extends Component {
   state = {
@@ -70,11 +70,9 @@ class Welcome extends Component {
         <Row>
           <Col size="sm-12">
             <div className="text-center">
-                <a href="/lobby">
-                  <button className="btn">
-                    Join Game
-                  </button>
-                </a>
+                <button className="btn">
+                  Join Game
+                </button>
             </div>
           </Col>
         </Row>

@@ -34,7 +34,8 @@ class HostRoom extends Component {
     event.preventDefault();
     const lobbyData = {
       lobbyName: this.state.roomName,
-      lobbyOwner: this.state.userName
+      lobbyOwner: this.state.userName,
+      players: [`${this.state.userName}`]
     };
     this.createLobby(lobbyData);
   };

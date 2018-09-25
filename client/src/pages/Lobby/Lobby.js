@@ -4,13 +4,18 @@ import './Lobby.css';
 
 class Lobby extends Component {
   state = {
-    players: [
-      'JimiHendrix', 'BillMurray', 'KingTut', 'Ghandi', 'CaptainPlanet', 'Regis Philbin'
-    ]
+    // players: [
+    //   'JimiHendrix', 'BillMurray', 'KingTut', 'Ghandi', 'CaptainPlanet', 'Regis Philbin'
+    // ]
+    players: []
   };
 
   componentDidMount() {
     console.log(this.props.location.state)
+    const playersArray = this.state.players.concat(`${this.props.location.state.ownerName}`)
+    this.setState({
+      players: playersArray
+    })
   }
 
   render() {

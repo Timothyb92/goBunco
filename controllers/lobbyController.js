@@ -15,5 +15,8 @@ module.exports = {
       .create(req.body)
       .then(dbLobby => res.json(dbLobby))
       .catch(err => res.status(422).json(err));
+  },
+  joinLobby: (req, res) => {
+    
   }
 }
