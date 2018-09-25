@@ -5,8 +5,7 @@ export default {
     return axios.post('api/users', data)
   },
   verifyUser: data => {
-    // console.log(`verifyUser running in API.js`)
-    // console.log(data);
+    console.log(`verifyUser running in API.js`)
     return axios.post(`api/users/${data.userName}`, data)
   },
   getUserInfo: userId => {

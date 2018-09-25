@@ -4,6 +4,48 @@ import './InGame.css';
 
 class InGame extends Component {
 
+  state = {
+    ourScore: 0,
+    thierScore: 0,
+    roundNumber: 1
+  };
+
+  handleOurPlusOne = () => {
+    this.setState({
+      ourScore: this.state.ourScore + 1
+    });
+  };
+
+  handleOurPlusFive = () => {
+    this.setState({
+      ourScore: this.state.ourScore + 5
+    });
+  };
+
+  handleOurBunco = () => {
+    this.setState({
+      ourScore: this.state.ourScore + 21
+    });
+  }
+  
+  handleThemPlusOne = () => {
+    this.setState({
+      thierScore: this.state.thierScore + 1
+    });
+  };
+  
+  handleThemPlusFive = () => {
+    this.setState({
+      thierScore: this.state.thierScore + 5
+    });
+  };
+  
+  handleThemBunco = () => {
+    this.setState({
+      thierScore: this.state.thierScore + 21
+    });
+  };
+  
   render() {
     return (
       <div id="inGameParent text-center">
@@ -19,35 +61,35 @@ class InGame extends Component {
           </Row>
           <Row>
             <div className="mx-auto col-xs-6">
-              <p className="text-center mx-auto score">14</p>
+              <p className="text-center mx-auto score">{this.state.ourScore}</p>
             </div>
             <div className="mx-auto col-xs-6">
-              <p className="text-center mx-auto score">9</p>
+              <p className="text-center mx-auto score">{this.state.thierScore}</p>
             </div>
           </Row>
           <div className="gameButtons">
             <Row>
               <div className="col-xs-6 mx-auto">
-                <button className="btn UsPlusOne plusOne">+1</button>
+                <button className="btn UsPlusOne plusOne" onClick={this.handleOurPlusOne}>+1</button>
               </div>
               <div className="col-xs-6 mx-auto">
-                <button className="btn themPlusOne plusOne">+1</button>
-              </div>
-            </Row>
-            <Row>
-              <div className="col-xs-6 mx-auto">
-                <button className="btn usPlusFive plusFive">+5</button>
-              </div>
-              <div className="col-xs-6 mx-auto">
-                <button className="btn themPlusFive plusFive">+5</button>
+                <button className="btn themPlusOne plusOne" onClick={this.handleThemPlusOne}>+1</button>
               </div>
             </Row>
             <Row>
               <div className="col-xs-6 mx-auto">
-                <button className="btn usBunco">Bunco!</button>
+                <button className="btn usPlusFive plusFive" onClick={this.handleOurPlusFive}>+5</button>
               </div>
               <div className="col-xs-6 mx-auto">
-                <button className="btn themBunco">Bunco!</button>
+                <button className="btn themPlusFive plusFive" onClick={this.handleThemPlusFive}>+5</button>
+              </div>
+            </Row>
+            <Row>
+              <div className="col-xs-6 mx-auto">
+                <button className="btn usBunco" onClick={this.handleOurBunco}>Bunco!</button>
+              </div>
+              <div className="col-xs-6 mx-auto">
+                <button className="btn themBunco" onClick={this.handleThemBunco}>Bunco!</button>
               </div>
             </Row>
           </div>

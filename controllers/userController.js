@@ -2,6 +2,7 @@ const db = require('../models');
 
 module.exports = {
   findAll: (req, res) => {
+    console.log(`Runnign findAll in userController.js`)
     db.User
       .find(req.query)
       .then(dbUser => res.json(dbUser))
@@ -26,13 +27,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   verifyUser: (req, res) => {
+    // console.log(req.body);
     db.User
       .findOne({
         userName: req.body.userName
       })
       .then(dbUser => {
         if(dbUser.password === req.body.password) {
-          console.log(req.body);
+          // console.log(req.body);
           console.log('Password match');
           return res.json(dbUser._id);
         } else {

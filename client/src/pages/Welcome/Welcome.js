@@ -9,15 +9,24 @@ class Welcome extends Component {
     img: 'https://education.fsu.edu/wp-content/uploads/2018/07/placeholder.png',
     userName: 'Tim'
   }
-
+  
   componentDidMount() {
     const thisId = document.location.pathname.slice(7);
     // console.log(thisId);
     API.getUserInfo(thisId)
-      .then(results => {
-        console.log(results);
-      })
+    .then(getRes => {
+      console.log(getRes);
+    })
   }
+  
+  // getUserInfo = event => {
+  //   event.preventDefault();
+  //   const thisId = document.location.pathname.slice(7);
+  //   API.getUserInfo(thisId)
+  //     .then(getRes => {
+  //       console.log(getRes);
+  //     })
+  // }
 
 
   render() {
