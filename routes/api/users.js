@@ -5,7 +5,7 @@ router.route('/')
   .get(userController.findAll)
   .post(userController.create);
 
-router.route('/:userName')
+router.route('/api/users/:userName')
   .get(userController.findById)
   .post(userController.verifyUser);
 
