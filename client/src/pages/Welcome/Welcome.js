@@ -16,6 +16,10 @@ class Welcome extends Component {
     API.getUserInfo(thisId)
     .then(getRes => {
       console.log(getRes);
+      this.setState({
+        userName: getRes.data.userName
+      });
+      console.log(this.state)
     })
   }
   
