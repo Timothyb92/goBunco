@@ -3,21 +3,34 @@ import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 import { Col, Row, Container } from '../../components/Grid';
 import './HostRoom.css';
+import Welcome from '../Welcome';
 
 class HostRoom extends Component {
   state = {
-    roomName: ''
+    roomName: '',
+    returnClicked: false,
+    userId: this.props.userId
   };
+
+  componentDidMount() {
+    console.log(this.state);
+  }
+
+  handleBackToProfile = () => {
+    this.setState({
+      returnClicked: true
+    })
+  }
 
   createLobby = data => {
     API.createLobby(data)
     .then(results => console.log(results));
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
     this.createLobby(this.state.roomName);
-  }
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -27,6 +40,10 @@ class HostRoom extends Component {
   }
 
   render() {
+    if (this.state.returnClicked) {
+      return <Welcome />
+    }
+
     return (
       <div className="mt-5 text-center">
         <Container>
@@ -43,6 +60,7 @@ class HostRoom extends Component {
                 </div>
                 <button className="btn hostRoomSubmitButton" onClick={this.handleSubmit}>Submit</button>
               </form>
+              <button className="btn backToProfile>" onClick={this.handleBackToProfile}>Back To Profile</button>
             </Col>
           </Row>
         </Container>

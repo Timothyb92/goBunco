@@ -3,6 +3,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import './Welcome.css'
 import Footer from '../../components/Footer';
 import API from '../../utils/API';
+import HostRoom from '../HostGame';
 
 class Welcome extends Component {
   state = {
@@ -23,9 +24,19 @@ class Welcome extends Component {
       });
       console.log(this.state)
     })
-  }
+  };
+
+  handleHostClick = () => {
+    this.setState({
+      hostClicked: true
+    });
+  };
   
   render() {
+    if (this.state.hostClicked) {
+      return <HostRoom userId={document.location.pathname.slice(7)} />
+    }
+
     return (
     <div>
       <Container>
@@ -49,11 +60,9 @@ class Welcome extends Component {
         <Row>
           <Col size="sm-12">
               <div className="text-center">
-                <a href="/lobby">
-                  <button className="btn">
-                    Host Game
-                  </button>
-                </a>
+                <button className="btn" onClick={this.handleHostClick}>
+                  Host Game
+                </button>
               </div>
           </Col>
         </Row>
