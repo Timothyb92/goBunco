@@ -4,6 +4,7 @@ import './Welcome.css'
 import Footer from '../../components/Footer';
 import API from '../../utils/API';
 import HostRoom from '../HostRoom';
+import JoinRoom from '../JoinRoom';
 
 class Welcome extends Component {
   state = {
@@ -32,10 +33,19 @@ class Welcome extends Component {
       hostClicked: true
     });
   };
+
+  handleJoinClick = () => {
+    this.setState({
+      joinClicked: true
+    });
+  };
   
   render() {
     if (this.state.hostClicked) {
       return <HostRoom userId={document.location.pathname.slice(7)} userName={this.state.userName} />
+    }
+    else if (this.state.joinClicked) {
+      return <JoinRoom userId={document.location.pathname.slice(7)} userName={this.state.userName} />
     }
 
     return (
@@ -70,7 +80,7 @@ class Welcome extends Component {
         <Row>
           <Col size="sm-12">
             <div className="text-center">
-                <button className="btn">
+                <button className="btn" onClick={this.handleJoinClick}>
                   Join Game
                 </button>
             </div>
