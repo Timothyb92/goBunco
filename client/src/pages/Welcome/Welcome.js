@@ -9,18 +9,19 @@ class Welcome extends Component {
   state = {
     img: 'https://education.fsu.edu/wp-content/uploads/2018/07/placeholder.png',
     userName: '',
+    userId: '',
     hostClicked: false,
     joinClicked: false
   }
   
   componentDidMount() {
     const thisId = document.location.pathname.slice(7);
-    console.log(thisId);
     API.getUserInfo(thisId)
     .then(getRes => {
       console.log(getRes);
       this.setState({
-        userName: getRes.data.userName
+        userName: getRes.data.userName,
+        userId: getRes.data._id
       });
       console.log(this.state)
     })
@@ -34,7 +35,7 @@ class Welcome extends Component {
   
   render() {
     if (this.state.hostClicked) {
-      return <HostRoom userId={document.location.pathname.slice(7)} />
+      return <HostRoom userId={document.location.pathname.slice(7)} userName={this.state.userName} />
     }
 
     return (

@@ -15,6 +15,6 @@ export default {
   },
   createLobby: data => {
     console.log(`createLobby running in API.js`);
-    return axios.post(`/api/lobbies`)
+    return axios.post(`/api/lobbies`, data)
   }
 }

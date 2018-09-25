@@ -10,6 +10,7 @@ module.exports = {
   },
   create: (req, res) => {
     console.log(`Running create method in lobbyController.js`);
+    console.log(req.body)
     db.Lobby
       .create(req.body)
       .then(dbLobby => res.json(dbLobby))

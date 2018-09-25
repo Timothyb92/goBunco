@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 import { Col, Row, Container } from '../../components/Grid';
 import './HostRoom.css';
@@ -9,11 +8,12 @@ class HostRoom extends Component {
   state = {
     roomName: '',
     returnClicked: false,
-    userId: this.props.userId
+    userId: this.props.userId,
+    userName: this.props.userName
   };
 
   componentDidMount() {
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   handleBackToProfile = () => {
@@ -23,13 +23,19 @@ class HostRoom extends Component {
   }
 
   createLobby = data => {
+    console.log(data)
     API.createLobby(data)
     .then(results => console.log(results));
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.createLobby(this.state.roomName);
+    const lobbyData = {
+      lobbyName: this.state.roomName,
+      lobbyOwner: this.state.userName
+    };
+    // console.log(lobbyData);
+    this.createLobby(lobbyData);
   };
 
   handleInputChange = event => {
@@ -56,7 +62,7 @@ class HostRoom extends Component {
             <Col size="sm-12">
               <form>
                 <div className="form-group">
-                  <input name="gameName" className="form-control" type="text" placeholder="Room Name" onChange={this.handleInputChange} />
+                  <input name="roomName" className="form-control" type="text" placeholder="Room Name" onChange={this.handleInputChange} />
                 </div>
                 <button className="btn hostRoomSubmitButton" onClick={this.handleSubmit}>Submit</button>
               </form>
