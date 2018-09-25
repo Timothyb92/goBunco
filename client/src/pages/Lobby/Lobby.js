@@ -4,8 +4,14 @@ import './Lobby.css';
 
 class Lobby extends Component {
   state = {
-    players: []
+    players: [
+      'JimiHendrix', 'BillMurray', 'KingTut', 'Ghandi', 'CaptainPlanet', 'Regis Philbin'
+    ]
   };
+
+  componentDidMount() {
+    console.log(this.props.location.state)
+  }
 
   render() {
     return (
@@ -14,7 +20,7 @@ class Lobby extends Component {
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                <h1>Lobby Name</h1>
+                <h1>{this.props.location.state.lobbyName}</h1>
                 <h2>Players In Lobby</h2>
               </div>
             </Col>
@@ -24,11 +30,14 @@ class Lobby extends Component {
               <div className="text-center">
                 <hr />
                 <ul>
-                  <li>JimiHendrix</li>
+                  {this.state.players.map(players => (
+                    <li key={players}>{players}</li>
+                  ))}
+                  {/* <li>JimiHendrix</li>
                   <li>BillMurray</li>
                   <li>KingTut</li>
                   <li>Ghandi</li>
-                  <li>CaptainPlanet</li>
+                  <li>CaptainPlanet</li> */}
                 </ul>
               </div>
             </Col>

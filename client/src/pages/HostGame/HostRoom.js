@@ -15,10 +15,6 @@ class HostRoom extends Component {
     lobbyId: ''
   };
 
-  componentDidMount() {
-    // console.log(this.state);
-  }
-
   handleBackToProfile = () => {
     this.setState({
       returnClicked: true
@@ -28,11 +24,9 @@ class HostRoom extends Component {
   createLobby = data => {
     API.createLobby(data)
     .then(results => {
-      console.log(`lobbyId before setState: ${this.state.lobbyId}`);
       this.setState({
         lobbyId: results.data._id
       })
-      console.log(`lobbyId after setState: ${this.state.lobbyId}`)
     });
   };
 
@@ -43,9 +37,6 @@ class HostRoom extends Component {
       lobbyOwner: this.state.userName
     };
     this.createLobby(lobbyData);
-    // this.setState({
-    //   submitClicked: true
-    // })
   };
 
   handleInputChange = event => {
@@ -64,6 +55,7 @@ class HostRoom extends Component {
         pathname: `/lobby/${this.state.lobbyId}`,
         state: {
           owner: this.state.userId,
+          ownerName: this.state.userName,
           lobbyName: this.state.roomName,
           lobbyId: this.state.lobbyId
         }
