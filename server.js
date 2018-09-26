@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const SOCKETPORT = 3002;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,26 +15,31 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-io.on('connection', socket => {
-  console.log('A user connected');
-  socket.on('disconnect', () => {
-    console.log('User disconnected')
-  })
-})
 
 mongoose.connect(
   process.env.MONGODB_URI ||
   "mongodb://localhost/bunco",
   { useNewUrlParser:true }
-);
+  );
+  
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
+  db.once('open', () => {
+    console.log('Connected')
+  });
+  
+  const http = require('http').createServer(app);
+  const io = require('socket.io')(http);
+  
+  io.on('connection', socket => {
+    console.log('A user connected');
+    socket.on('disconnect', () => {
+      console.log('User disconnected')
+    })
+  })
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected')
-});
+// io.listen(SOCKETPORT);
 
-
-io.listen(PORT, () =>
+http.listen(PORT, () =>
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 );
