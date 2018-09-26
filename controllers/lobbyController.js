@@ -35,5 +35,24 @@ module.exports = {
       // {
       //   players: players.push(req.body.userName)
       // }).then(dbLobby => res.json(dbLobby))
+  },
+  updatePlayers: (req, res) => {
+    console.log('vvv request body on updatePlayers method lobbyController.js vvv')
+    console.log(req.body);
+    db.Lobby
+      .findOne({ lobbyName: req.body.lobbyName })
+        .then(dbLobby => {
+          const playersArray = dbLobby.players;
+          if (playersArray.indexOf(req.userName) !== -1) {
+            playersArray.push(req.body.userName);
+            db.Lobby
+              .findOneAndUpdate({
+                lobbyName: req.body.room
+              },
+              {
+                players: playersArray
+              })
+          }
+        })
   }
 }

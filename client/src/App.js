@@ -8,7 +8,7 @@ import StartRound from './pages/StartRound';
 import InGame from './pages/InGame';
 import RoundEnd from './pages/RoundEnd';
 import FinalScore from './pages/FinalScore';
-import HostRoom from './pages/HostGame';
+import HostRoom from './pages/HostRoom';
 // import io from 'socket.io-client';
 
 class App extends Component {

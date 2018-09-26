@@ -7,8 +7,31 @@ const socket = io();
 class Lobby extends Component {
 
   componentDidMount() {
+    console.log(this.props.location.state)
+    const playerData = {
+      userName: this.props.location.state.userName,
+      room: this.props.location.state.lobbyId,
+      players: this.state.players,
+      lobbyName: this.props.location.state.lobbyName
+    }
     // this.socket.on('connect', () => console.log('Connected to socket at Lobby.js'));
-    socket.emit('room', { room: this.props.location.state.lobbyId })
+    socket.emit('room', playerData);
+
+    socket.on('room', data => {
+      console.log(data);
+      this.setState({
+        players: data
+      })
+      // if (this.state.players.indexOf(data) === -1) {
+      //   console.log('if condition met')
+      //   const playersArray = this.state.players;
+      //   playersArray.push(data)
+      //   this.setState({
+      //     players: playersArray
+      //   })
+      // };
+      console.log(this.state);
+    })
   }
 
   state = {

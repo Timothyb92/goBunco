@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
-const SOCKETPORT = 3002;
+// const dbLobby = require('./controllers/lobbyController');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,20 +31,29 @@ mongoose.connect(
   const http = require('http').createServer(app);
   const io = require('socket.io')(http);
   
+  let playersArray = [];
   io.on('connection', socket => {
-    console.log(socket.id);
-    console.log('A user connected');
+    // console.log(socket.id);
+    // console.log('A user connected');
 
     socket.on('disconnect', () => {
-      console.log('User disconnected')
+      // console.log('User disconnected')
     })
 
     socket.on('room', data => {
-      console.log('socket emit from client heard on server')
+      console.log(data.userName)
+      // playersArray.push(data)
+      // dbLobby.updatePlayers(data);
+      if (playersArray.indexOf(data.players.userName) === -1) {
+        playersArray.push(data.userName);
+      }
+      console.log(playersArray);
       socket.join(data.room)
+      socket.emit('room', playersArray)
     })
   })
 
 http.listen(PORT, () =>
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)
 );
+
