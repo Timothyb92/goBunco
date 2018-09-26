@@ -32,13 +32,12 @@ mongoose.connect(
   const io = require('socket.io')(http);
   
   io.on('connection', socket => {
+    console.log(socket.id);
     console.log('A user connected');
     socket.on('disconnect', () => {
       console.log('User disconnected')
     })
   })
-
-// io.listen(SOCKETPORT);
 
 http.listen(PORT, () =>
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`)

@@ -9,8 +9,20 @@ import InGame from './pages/InGame';
 import RoundEnd from './pages/RoundEnd';
 import FinalScore from './pages/FinalScore';
 import HostRoom from './pages/HostGame';
+import io from 'socket.io-client';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.socket = io()
+  }
+
+  componentDidMount() {
+    this.socket.on('connect', () => console.log('Connected to socket at App.js'));
+  }
+
   render() {
     return (
       <Router>
