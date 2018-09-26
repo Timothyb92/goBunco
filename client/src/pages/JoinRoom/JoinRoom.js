@@ -37,16 +37,22 @@ class JoinRoom extends Component {
   }
 
   joinLobby = data => {
-    console.log(data)
     API.joinLobby(data)
     .then(results => {
-      console.log(results);
+      this.setState({
+        lobbyId: results.data._id
+      })
     });
   };
 
   render() {
     if (this.state.returnClicked) {
       return <Welcome />
+    }
+    else if (this.state.lobbyId !== '') {
+      return <Redirect to={{
+        pathname: `/lobby/${this.state.lobbyId}`
+      }} />
     }
 
     return (
