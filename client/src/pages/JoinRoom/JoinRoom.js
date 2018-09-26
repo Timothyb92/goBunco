@@ -14,6 +14,10 @@ class JoinRoom extends Component {
     lobbyId: ''
   };
 
+  // componentDidMount() {
+  //   console.log(this.state);
+  // }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -51,7 +55,11 @@ class JoinRoom extends Component {
     }
     else if (this.state.lobbyId !== '') {
       return <Redirect to={{
-        pathname: `/lobby/${this.state.lobbyId}`
+        pathname: `/lobby/${this.state.lobbyId}`,
+        state: {
+          lobbyName: this.state.roomName,
+          userName: this.state.userName
+        }
       }} />
     }
 

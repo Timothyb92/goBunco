@@ -18,7 +18,6 @@ class LogIn extends Component {
       this.setState({
         id: results.data
       })
-      console.log(this.state.id);
     })
   }
 

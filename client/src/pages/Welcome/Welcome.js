@@ -19,12 +19,10 @@ class Welcome extends Component {
     const thisId = document.location.pathname.slice(7);
     API.getUserInfo(thisId)
     .then(getRes => {
-      console.log(getRes);
       this.setState({
         userName: getRes.data.userName,
         userId: getRes.data._id
       });
-      console.log(this.state)
     })
   };
 

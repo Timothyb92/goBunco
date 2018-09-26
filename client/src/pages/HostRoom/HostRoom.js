@@ -57,6 +57,7 @@ class HostRoom extends Component {
         state: {
           owner: this.state.userId,
           ownerName: this.state.userName,
+          userName: this.state.userName,
           lobbyName: this.state.roomName,
           lobbyId: this.state.lobbyId
         }

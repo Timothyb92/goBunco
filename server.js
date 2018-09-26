@@ -34,8 +34,14 @@ mongoose.connect(
   io.on('connection', socket => {
     console.log(socket.id);
     console.log('A user connected');
+
     socket.on('disconnect', () => {
       console.log('User disconnected')
+    })
+
+    socket.on('room', data => {
+      console.log('socket emit from client heard on server')
+      socket.join(data.room)
     })
   })
 

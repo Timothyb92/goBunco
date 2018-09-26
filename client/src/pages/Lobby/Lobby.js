@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import { Col, Row, Container } from '../../components/Grid';
 import './Lobby.css';
+import io from 'socket.io-client';
+const socket = io();
 
 class Lobby extends Component {
+
+  componentDidMount() {
+    // this.socket.on('connect', () => console.log('Connected to socket at Lobby.js'));
+    socket.emit('room', { room: this.props.location.state.lobbyId })
+  }
 
   state = {
     players: []
   };
 
-  componentDidMount() {
-    console.log(this.props.location.state)
-    const playersArray = this.state.players.concat(`${this.props.location.state.ownerName}`)
-    this.setState({
-      players: playersArray
-    });
-  }
+  // componentDidMount() {
+  //   console.log(this.props.location.state)
+  //   const playersArray = this.state.players.concat(`${this.props.location.state.ownerName}`)
+  //   this.setState({
+  //     players: playersArray
+  //   });
+  // }
 
   render() {
     return (
@@ -23,7 +30,7 @@ class Lobby extends Component {
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                <h1>{this.props.location.state.lobbyName}</h1>
+                {/* <h1>{this.props.location.state.lobbyName}</h1> */}
                 <h2>Players In Lobby</h2>
               </div>
             </Col>
