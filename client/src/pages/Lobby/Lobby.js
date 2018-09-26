@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Col, Row, Container } from '../../components/Grid';
 import './Lobby.css';
+import io from 'socket.io-client';
 
 class Lobby extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.socket = io()
+  }
+
   state = {
     // players: [
     //   'JimiHendrix', 'BillMurray', 'KingTut', 'Ghandi', 'CaptainPlanet', 'Regis Philbin'
@@ -15,7 +23,8 @@ class Lobby extends Component {
     const playersArray = this.state.players.concat(`${this.props.location.state.ownerName}`)
     this.setState({
       players: playersArray
-    })
+    });
+    this.socket.on('connect', () => console.log('Connected to Socket'))
   }
 
   render() {
