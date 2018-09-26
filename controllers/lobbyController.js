@@ -17,6 +17,28 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   joinLobby: (req, res) => {
-    
+    console.log(`joinLobby method running in lobbyController.js`)
+    // console.log(req.body);
+    db.Lobby
+      .findOne({ lobbyName: req.body.lobbyName })
+        .then(dbLobbyFindOne => {
+          const playersArray = dbLobbyFindOne.players;
+          playersArray.push(req.body.userName);
+          db.Lobby
+            .findOneAndUpdate({
+              lobbyName: req.body.lobbyName
+            },
+            {
+              players: playersArray
+            })
+              .then(dbLobbyFindOneAndUpdate => res.json(dbLobbyFindOneAndUpdate))
+              .catch(err => res.status(422).json(err));
+        })
+      // .findOneAndUpdate({
+      //   lobbyName: req.body.lobbyName
+      // },
+      // {
+      //   players: players.push(req.body.userName)
+      // }).then(dbLobby => res.json(dbLobby))
   }
 }

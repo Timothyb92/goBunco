@@ -3,6 +3,7 @@ const lobbyController = require('../../controllers/lobbyController');
 
 router.route('/api/lobbies')
   // .get(lobbyController.findAll)
-  .post(lobbyController.create);
+  .post(lobbyController.create)
+  .put(lobbyController.joinLobby);
 
   module.exports = router;

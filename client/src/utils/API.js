@@ -21,6 +21,7 @@ export default {
   },
   joinLobby: data => {
     console.log(`joinLobby running in API.js`);
+    console.log(data);
     return axios.put(`/api/lobbies`, data)
   }
 }

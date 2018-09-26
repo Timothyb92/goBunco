@@ -27,7 +27,17 @@ class JoinRoom extends Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const lobbyData = {
+      lobbyName: this.state.roomName,
+      userName: this.state.userName
+    };
+    this.joinLobby(lobbyData)
+  }
+
   joinLobby = data => {
+    console.log(data)
     API.joinLobby(data)
     .then(results => {
       console.log(results);
