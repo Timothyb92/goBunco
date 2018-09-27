@@ -53,9 +53,11 @@ mongoose.connect(
         playersArray = playersArray.filter(player => player !== playerName)
         io.sockets.emit(data.lobbyName, playersArray)
       });
-      socket.on('leavel lobby', () => {
+      socket.on('leave lobby', () => {
+        console.log(playersArray)
         playersArray = playersArray.filter(player => player !== playerName)
         io.sockets.emit(data.lobbyName, playersArray)
+        console.log(playersArray)
       })
     });
 
