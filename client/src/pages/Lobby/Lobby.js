@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from '../../components/Grid';
 import './Lobby.css';
 import io from 'socket.io-client';
-import { List, ListItem } from '../../components/List';
 const socket = io();
 
 class Lobby extends Component {

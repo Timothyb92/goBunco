@@ -36,19 +36,26 @@ mongoose.connect(
     // console.log(socket.id);
     // console.log('A user connected');
 
-    socket.on('disconnect', () => {
-      // console.log('User disconnected')
-    })
+    // socket.on('disconnect', socket => {
+      // console.log('user disconnected')
+      // console.log(socket)
+    // })
 
     socket.on('room', data => {
-      console.log(data)
+      const playerName = data.userName
       if (playersArray.indexOf(data.userName) === -1) {
         playersArray.push(data.userName);
       }
-      console.log(playersArray);
       socket.join(data.room)
       io.sockets.emit(data.lobbyName, playersArray)
       // io.in(data.room).emit('room', playersArray)
+      socket.on('disconnect', () => {
+        console.log('user discon')
+        console.log(playerName)
+        playersArray = playersArray.filter(player => player !== playerName)
+        console.log(playersArray)
+        io.sockets.emit(data.lobbyName, playersArray)
+      })
     })
   })
 
