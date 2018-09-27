@@ -18,7 +18,7 @@ class Lobby extends Component {
     socket.emit('room', playerData);
 
   }
-  listen = socket.on('room', data => {
+  listen = socket.on(this.props.location.state.lobbyName, data => {
     console.log(this.state.players);
     this.setState({
       players: data
