@@ -58,7 +58,8 @@ class JoinRoom extends Component {
         pathname: `/lobby/${this.state.lobbyId}`,
         state: {
           lobbyName: this.state.roomName,
-          userName: this.state.userName
+          userName: this.state.userName,
+          userId: this.state.userId
         }
       }} />
     }

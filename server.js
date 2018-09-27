@@ -52,8 +52,14 @@ mongoose.connect(
       socket.on('disconnect', () => {
         playersArray = playersArray.filter(player => player !== playerName)
         io.sockets.emit(data.lobbyName, playersArray)
+      });
+      socket.on('leavel lobby', () => {
+        playersArray = playersArray.filter(player => player !== playerName)
+        io.sockets.emit(data.lobbyName, playersArray)
       })
-    })
+    });
+
+
   })
 
 http.listen(PORT, () =>

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from '../../components/Grid';
 import './Lobby.css';
 import io from 'socket.io-client';
+import Welcome from '../Welcome';
+import { Redirect } from 'react-router-dom';
+
+
+
 const socket = io();
 
 class Lobby extends Component {
@@ -15,8 +20,8 @@ class Lobby extends Component {
       lobbyName: this.props.location.state.lobbyName
     }
     socket.emit('room', playerData);
-
   }
+
   listen = socket.on(this.props.location.state.lobbyName, data => {
     console.log(this.state.players);
     this.setState({
@@ -36,7 +41,7 @@ class Lobby extends Component {
       )
     } else {
       return (
-        <button className="btn">Leave Lobby</button>
+        <button className="btn" onClick={this.leaveLobby}>Leave Lobby</button>
       )
     }
   }
@@ -51,11 +56,31 @@ class Lobby extends Component {
     )
   }
 
+  leaveLobby = () => {
+    this.setState({
+      leaveClicked: true
+    });
+    const playerData = {
+      userName: this.props.location.state.userName,
+      room: this.props.location.state.lobbyId,
+      players: this.state.players,
+      lobbyName: this.props.location.state.lobbyName
+    };
+    socket.emit('leave lobby', playerData);
+  }
+
   state = {
-    players: []
+    players: [],
+    leaveClicked: false,
+    closeClicked: false
   };
 
   render() {
+
+    if (this.state.leaveClicked) {
+      return <Redirect to={`/users/${this.props.location.state.userId}`} />
+    }
+
     return (
       <div>
         <Container>
