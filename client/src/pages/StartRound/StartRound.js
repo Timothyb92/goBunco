@@ -12,6 +12,12 @@ class StartRound extends Component {
     console.log(this.props.location.state)
   }
 
+  renderStartButtonIfOwner = owner => {
+    if(owner) {
+      return <button className="btn">Start!</button>
+    }
+  }
+
   render() {
     return (
       <div>
@@ -29,7 +35,7 @@ class StartRound extends Component {
           <Row>
             <Col size="sm-12">
               <a href="/play">
-                <button className="btn">Start!</button>
+                {this.renderStartButtonIfOwner(this.props.location.state.owner)}
               </a>
             </Col>
           </Row>
