@@ -41,10 +41,11 @@ mongoose.connect(
     })
 
     socket.on('room', data => {
-      console.log(data.userName)
+      // socket.set('nickname', data.userName)
+      console.log(socket.client)
       // playersArray.push(data)
       // dbLobby.updatePlayers(data);
-      if (playersArray.indexOf(data.players.userName) === -1) {
+      if (playersArray.indexOf(data.userName) === -1) {
         playersArray.push(data.userName);
       }
       console.log(playersArray);

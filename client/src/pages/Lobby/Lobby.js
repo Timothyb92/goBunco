@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from '../../components/Grid';
 import './Lobby.css';
 import io from 'socket.io-client';
+import {List} from '../../components/List';
+import ListItem from '../../components/ListItem'
 const socket = io();
 
 class Lobby extends Component {
@@ -62,16 +64,9 @@ class Lobby extends Component {
             <Col size="sm-12">
               <div className="text-center">
                 <hr />
-                <ul>
-                  {this.state.players.map(players => (
-                    <li key={players}>{players}</li>
-                  ))}
-                  {/* <li>JimiHendrix</li>
-                  <li>BillMurray</li>
-                  <li>KingTut</li>
-                  <li>Ghandi</li>
-                  <li>CaptainPlanet</li> */}
-                </ul>
+                <List>
+                  <ListItem />
+                </List>
               </div>
             </Col>
           </Row>
