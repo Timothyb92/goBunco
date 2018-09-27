@@ -33,6 +33,7 @@ class Lobby extends Component {
 
   listenForClose = socket.on('close lobby', () => {
     this.setState({
+      players: [],
       leaveClicked: true
     })
   })
@@ -86,6 +87,9 @@ class Lobby extends Component {
 
     if (this.state.leaveClicked) {
       return <Redirect to={`/users/${this.props.location.state.userId}`} />
+    }
+    else if (this.state.closeClicked) {
+      return <Redirect to={`/users/${this.props.location.state.owner}`} />
     }
 
     return (
