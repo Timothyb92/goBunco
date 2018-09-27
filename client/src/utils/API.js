@@ -17,5 +17,8 @@ export default {
   },
   joinLobby: data => {
     return axios.put(`/api/lobbies`, data)
+  },
+  updatePlayers: data => {
+    return axios.put(`/api/lobbies/${data.lobbyId}`, data)
   }
 }

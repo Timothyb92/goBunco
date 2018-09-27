@@ -6,4 +6,7 @@ router.route('/api/lobbies')
   .post(lobbyController.create)
   .put(lobbyController.joinLobby);
 
+router.route('/api/lobbies/:lobbyId')
+  .put(lobbyController.updatePlayers);
+
   module.exports = router;

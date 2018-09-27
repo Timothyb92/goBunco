@@ -16,43 +16,40 @@ module.exports = {
   joinLobby: (req, res) => {
     db.Lobby
       .findOne({ lobbyName: req.body.lobbyName })
-        .then(dbLobbyFindOne => {
-          const playersArray = dbLobbyFindOne.players;
-          playersArray.push(req.body.userName);
-          db.Lobby
-            .findOneAndUpdate({
-              lobbyName: req.body.lobbyName
-            },
-            {
-              players: playersArray
-            })
-              .then(dbLobbyFindOneAndUpdate => res.json(dbLobbyFindOneAndUpdate))
-              .catch(err => res.status(422).json(err));
-        })
-      // .findOneAndUpdate({
-      //   lobbyName: req.body.lobbyName
-      // },
-      // {
-      //   players: players.push(req.body.userName)
-      // }).then(dbLobby => res.json(dbLobby))
-  },
+        .then(dbLobbyFindOne => res.json(dbLobbyFindOne)
+        //   {
+        //   const playersArray = dbLobbyFindOne.players;
+        //   playersArray.push(req.body.userName);
+        //   db.Lobby
+        //     .findOneAndUpdate({
+        //       lobbyName: req.body.lobbyName
+        //     },
+        //     {
+        //       players: playersArray
+        //     })
+        //       .then(dbLobbyFindOneAndUpdate => res.json(dbLobbyFindOneAndUpdate))
+        //       .catch(err => res.status(422).json(err));
+        // })
+        )},
   updatePlayers: (req, res) => {
-    console.log('vvv request body on updatePlayers method lobbyController.js vvv')
-    console.log(req.body);
+    // console.log('vvv request body on updatePlayers method lobbyController.js vvv')
+    // console.log(req.body);
     db.Lobby
-      .findOne({ lobbyName: req.body.lobbyName })
-        .then(dbLobby => {
-          const playersArray = dbLobby.players;
-          if (playersArray.indexOf(req.userName) !== -1) {
-            playersArray.push(req.body.userName);
-            db.Lobby
-              .findOneAndUpdate({
-                lobbyName: req.body.room
-              },
-              {
-                players: playersArray
-              })
-          }
-        })
+      .findOne({ _id: req.body.lobbyId })
+        .then(dbLobby => 
+          {
+          // const playersArray = dbLobby.players;
+          // console.log(req.body.players);
+          db.Lobby
+          .findOneAndUpdate({
+            _id: req.body.lobbyId
+          },
+          {
+            players: req.body.players
+          })
+          .then(dbLobbyUpdated => console.log(dbLobbyUpdated))
+          // console.log(playersArray);
+        }
+        )
   }
 }

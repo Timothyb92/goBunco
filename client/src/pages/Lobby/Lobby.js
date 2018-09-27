@@ -4,6 +4,7 @@ import './Lobby.css';
 import io from 'socket.io-client';
 import Welcome from '../Welcome';
 import { Redirect } from 'react-router-dom';
+import API from '../../utils/API';
 
 
 
@@ -43,7 +44,7 @@ class Lobby extends Component {
       return (
         <div>
           <button className="btn" onClick={this.closeLobby}>Close Lobby</button>
-          <button className="btn">Start Game</button>
+          <button className="btn" onClick={this.startGame}>Start Game</button>
         </div>
       )
     } else {
@@ -75,6 +76,21 @@ class Lobby extends Component {
       closeClicked: true
     });
     socket.emit('close lobby');
+  }
+
+  startGame = () => {
+    // console.log(this.state.players)
+    // console.log('Start game clicked')
+    const playerData = {
+      lobbyId: this.props.location.state.lobbyId,
+      players: this.state.players
+    }
+    this.updateDB(playerData);
+  }
+
+  updateDB = data => {
+    API.updatePlayers(data)
+      .then(results => console.log(results));
   }
 
   state = {
