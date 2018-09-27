@@ -42,23 +42,41 @@ mongoose.connect(
     // })
 
     socket.on('room', data => {
+
+      // let nsp = io.of(`/${data.lobbyName}`)
+      // nsp.on('connection', () => console.log('connected to nsp'))
+
+
       const playerName = data.userName
       if (playersArray.indexOf(data.userName) === -1) {
         playersArray.push(data.userName);
       }
       socket.join(data.room)
+      io.in(data.room).clients((err, clients) => {
+        console.log(clients)
+      })
+      // io.to(data.room).emit(data.lobbyName, playersArray);
       io.sockets.emit(data.lobbyName, playersArray)
-      // io.in(data.room).emit('room', playersArray)
+
       socket.on('disconnect', () => {
         playersArray = playersArray.filter(player => player !== playerName)
+        // io.to(data.room).emit(data.lobbyName, playersArray)
         io.sockets.emit(data.lobbyName, playersArray)
       });
+
       socket.on('leave lobby', () => {
         playersArray = playersArray.filter(player => player !== playerName)
+        // io.to(data.room).emit(data.lobbyName, playersArray)
         io.sockets.emit(data.lobbyName, playersArray)
       });
+
       socket.on('close lobby', () => {
+        // io.to(data.room).emit('close lobby')
         io.sockets.emit('close lobby')
+      })
+
+      socket.on('start game', () => {
+        io.sockets.emit('start game')
       })
     });
 

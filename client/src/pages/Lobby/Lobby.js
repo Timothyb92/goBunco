@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from '../../components/Grid';
 import './Lobby.css';
 import io from 'socket.io-client';
-import Welcome from '../Welcome';
 import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 
-
-
-const socket = io();
+let socket = io();
+console.log(this)
 
 class Lobby extends Component {
 
   componentDidMount() {
-    console.log(this.props.location.state)
+    // console.log(socket)
+    // console.log(this.props.location.state)
     const playerData = {
       userName: this.props.location.state.userName,
       room: this.props.location.state.lobbyId,
@@ -24,18 +23,26 @@ class Lobby extends Component {
   }
 
   listenForJoin = socket.on(this.props.location.state.lobbyName, data => {
-    console.log(this.state.players);
+    // console.log(this.state.players);
+    console.log('Receiving emit from server');
     this.setState({
       players: data
     })
     this.updatePlayerList();
     console.log(this.state.players)
+    this.render();
   })
 
   listenForClose = socket.on('close lobby', () => {
     this.setState({
       players: [],
       leaveClicked: true
+    })
+  })
+
+  listenForGameStart = socket.on('start game', () => {
+    this.setState({
+      startClicked: true
     })
   })
 
@@ -86,6 +93,10 @@ class Lobby extends Component {
       players: this.state.players
     }
     this.updateDB(playerData);
+    socket.emit('start game')
+    // this.setState({
+    //   startClicked: true
+    // })
   }
 
   updateDB = data => {
@@ -96,7 +107,8 @@ class Lobby extends Component {
   state = {
     players: [],
     leaveClicked: false,
-    closeClicked: false
+    closeClicked: false,
+    startClicked: false
   };
 
   render() {
@@ -106,6 +118,15 @@ class Lobby extends Component {
     }
     else if (this.state.closeClicked) {
       return <Redirect to={`/users/${this.props.location.state.owner}`} />
+    }
+    else if (this.state.startClicked) {
+      return <Redirect to={{
+        pathname: `/start/${this.props.location.state.lobbyId}`,
+        state: {
+          owner: this.props.location.state.ownerName,
+          lobbyId: this.props.location.state.lobbyId
+        }
+      }} />
     }
 
     return (

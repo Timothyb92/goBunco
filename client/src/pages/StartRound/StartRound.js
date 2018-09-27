@@ -8,6 +8,10 @@ class StartRound extends Component {
     round: 1
   };
 
+  componentDidMount() {
+    console.log(this.props.location.state)
+  }
+
   render() {
     return (
       <div>
