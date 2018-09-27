@@ -22,7 +22,7 @@ class Lobby extends Component {
     socket.emit('room', playerData);
   }
 
-  listen = socket.on(this.props.location.state.lobbyName, data => {
+  listenForJoin = socket.on(this.props.location.state.lobbyName, data => {
     console.log(this.state.players);
     this.setState({
       players: data
@@ -31,11 +31,17 @@ class Lobby extends Component {
     console.log(this.state.players)
   })
 
+  listenForClose = socket.on('close lobby', () => {
+    this.setState({
+      leaveClicked: true
+    })
+  })
+
   renderCloseOrLeaveButton = owner => {
     if (owner) {
       return (
         <div>
-          <button className="btn">Close Lobby</button>
+          <button className="btn" onClick={this.closeLobby}>Close Lobby</button>
           <button className="btn">Start Game</button>
         </div>
       )
@@ -60,13 +66,14 @@ class Lobby extends Component {
     this.setState({
       leaveClicked: true
     });
-    const playerData = {
-      userName: this.props.location.state.userName,
-      room: this.props.location.state.lobbyId,
-      players: this.state.players,
-      lobbyName: this.props.location.state.lobbyName
-    };
-    socket.emit('leave lobby', playerData);
+    socket.emit('leave lobby');
+  }
+
+  closeLobby = () => {
+    this.setState({
+      closeClicked: true
+    });
+    socket.emit('close lobby');
   }
 
   state = {

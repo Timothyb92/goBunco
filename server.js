@@ -54,10 +54,11 @@ mongoose.connect(
         io.sockets.emit(data.lobbyName, playersArray)
       });
       socket.on('leave lobby', () => {
-        console.log(playersArray)
         playersArray = playersArray.filter(player => player !== playerName)
         io.sockets.emit(data.lobbyName, playersArray)
-        console.log(playersArray)
+      });
+      socket.on('close lobby', () => {
+        io.sockets.emit('close lobby')
       })
     });
 
