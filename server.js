@@ -42,7 +42,7 @@ mongoose.connect(
 
     socket.on('room', data => {
       // socket.set('nickname', data.userName)
-      console.log(socket.client)
+      // console.log(socket.client)
       // playersArray.push(data)
       // dbLobby.updatePlayers(data);
       if (playersArray.indexOf(data.userName) === -1) {
@@ -50,7 +50,7 @@ mongoose.connect(
       }
       console.log(playersArray);
       socket.join(data.room)
-      socket.emit('room', playersArray)
+      io.sockets.emit('room', playersArray)
     })
   })
 
