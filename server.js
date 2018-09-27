@@ -50,10 +50,7 @@ mongoose.connect(
       io.sockets.emit(data.lobbyName, playersArray)
       // io.in(data.room).emit('room', playersArray)
       socket.on('disconnect', () => {
-        console.log('user discon')
-        console.log(playerName)
         playersArray = playersArray.filter(player => player !== playerName)
-        console.log(playersArray)
         io.sockets.emit(data.lobbyName, playersArray)
       })
     })

@@ -7,7 +7,7 @@ const socket = io();
 class Lobby extends Component {
 
   componentDidMount() {
-    // console.log(this.props.location.state)
+    console.log(this.props.location.state)
     const playerData = {
       userName: this.props.location.state.userName,
       room: this.props.location.state.lobbyId,
@@ -25,6 +25,21 @@ class Lobby extends Component {
     this.updatePlayerList();
     console.log(this.state.players)
   })
+
+  renderCloseOrLeaveButton = owner => {
+    if (owner) {
+      return (
+        <div>
+          <button className="btn">Close Lobby</button>
+          <button className="btn">Start Game</button>
+        </div>
+      )
+    } else {
+      return (
+        <button className="btn">Leave Lobby</button>
+      )
+    }
+  }
   
   updatePlayerList = () => {
     return (
@@ -47,7 +62,7 @@ class Lobby extends Component {
           <Row>
             <Col size="sm-12">
               <div className="text-center">
-                {/* <h1>{this.props.location.state.lobbyName}</h1> */}
+                <h1>{this.props.location.state.lobbyName}</h1>
                 <h2>Players In Lobby</h2>
               </div>
             </Col>
@@ -65,9 +80,7 @@ class Lobby extends Component {
             <Row>
               <Col size="sm-12">
                 <div className="lobbyButtonContainer">
-                  <button className="btn">Invite Player</button>
-                  <button className="btn">Close Lobby</button>
-                  <button className="btn">Start Game</button>
+                  {this.renderCloseOrLeaveButton(this.props.location.state.ownerName)}
                 </div>
               </Col>
             </Row>
